@@ -72,9 +72,9 @@ func (p Plugin) Exec() error {
 			"-Dsonar.showProfiling=" + p.Config.ShowProfiling,
 			"-Dsonar.scm.provider=git",
             // sonar pr
-            "-Dsonar.pullrequest.key=" + p.Config.ShowProfiling,
-            "-Dsonar.pullrequest.branch=" + p.Config.ShowProfiling,
-            "-sonar.pullrequest.base=" + p.Config.ShowProfiling,
+            "-Dsonar.pullrequest.key=" + p.Config.PullrequestKey,
+            "-Dsonar.pullrequest.branch=" + p.Config.PullrequestBranch,
+            "-sonar.pullrequest.base=" + p.Config.PullrequestBase,
 
 		}
 		args = append(args, argsParameter...)
