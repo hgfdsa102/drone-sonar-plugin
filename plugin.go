@@ -71,19 +71,25 @@ func (p Plugin) Exec() error {
 			"-Dsonar.log.level=" + p.Config.Level,
 			"-Dsonar.showProfiling=" + p.Config.ShowProfiling,
 			"-Dsonar.scm.provider=git",
-            // sonar pr
-            "-Dsonar.pullrequest.key=" + p.Config.PullrequestKey,
-            "-Dsonar.pullrequest.branch=" + p.Config.PullrequestBranch,
-            "-Dsonar.pullrequest.base=" + p.Config.PullrequestBase,
-
 		}
 		args = append(args, argsParameter...)
 	}
 
 
-	if p.Config.BranchAnalysis {
-		args = append(args, "-Dsonar.branch.name=" + p.Config.Branch)
-	}
+    // sonar pr
+    if len(p.Config.PullrequestKey) > 0 {
+        argsParameter := []string{
+            "-Dsonar.pullrequest.key=" + p.Config.PullrequestKey,
+            "-Dsonar.pullrequest.branch=" + p.Config.PullrequestBranch,
+            "-Dsonar.pullrequest.base=" + p.Config.PullrequestBase,
+            }
+            args = append(args, argsParameter...)
+    }
+
+
+//	if p.Config.BranchAnalysis {
+//		args = append(args, "-Dsonar.branch.name=" + p.Config.Branch)
+//	}
 
     log.Println("=== ARGS ===")
     for _, e := range args {

@@ -84,11 +84,11 @@ func main() {
 			Value:  "false",
 			EnvVar: "PLUGIN_SHOWPROFILING",
 		},
-		cli.BoolFlag{
-			Name:   "branchAnalysis",
-			Usage:  "execute branchAnalysis",
-			EnvVar: "PLUGIN_BRANCHANALYSIS",
-		},
+//		cli.BoolFlag{
+//			Name:   "branchAnalysis",
+//			Usage:  "execute branchAnalysis",
+//			EnvVar: "PLUGIN_BRANCHANALYSIS",
+//		},
 		cli.BoolFlag{
 			Name:   "usingProperties",
 			Usage:  "using sonar-project.properties",
@@ -131,17 +131,18 @@ func run(c *cli.Context) {
 			Exclusions:     c.String("exclusions"),
 			Level:          c.String("level"),
 			ShowProfiling:  c.String("showProfiling"),
-			BranchAnalysis: c.Bool("branchAnalysis"),
+//			BranchAnalysis: c.Bool("branchAnalysis"),
 			UsingProperties: c.Bool("usingProperties"),
 
             PullrequestKey:     c.String("pullrequestKey"),
-            PullrequestBranch:          c.String("pullrequestBranch"),
-            PullrequestBase:  c.String("pullrequestBase"),
-
+            PullrequestBranch:  c.String("pullrequestBranch"),
+            PullrequestBase:    c.String("pullrequestBase"),
 		},
 	}
 
 
+    log.Println("=== plugin struct ===")
+    log.Printf("%v\n", plugin)
     log.Println("=== ENV ===")
     for _, e := range os.Environ() {
         pair := strings.SplitN(e, "=", 2)
