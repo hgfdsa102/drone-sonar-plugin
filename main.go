@@ -94,6 +94,22 @@ func main() {
 			Usage:  "using sonar-project.properties",
 			EnvVar: "PLUGIN_USINGPROPERTIES",
 		},
+        // sonar pr
+        cli.StringFlag{
+            Name: "pullrequestKey",
+            Usage: "sonar.pullrequest.key",
+            EnvVar: "DRONE_PULL_REQUEST",
+        },
+        cli.StringFlag{
+            Name: "pullrequestBranch",
+            Usage: "sonar.pullrequest.branch",
+            EnvVar: "DRONE_SOURCE_BRANCH",
+        },
+        cli.StringFlag{
+            Name: "pullrequestBase",
+            Usage: "sonar.pullrequest.base",
+            EnvVar: "DRONE_REPO_BRANCH",
+        },
 	}
 
 	app.Run(os.Args)
@@ -117,6 +133,10 @@ func run(c *cli.Context) {
 			ShowProfiling:  c.String("showProfiling"),
 			BranchAnalysis: c.Bool("branchAnalysis"),
 			UsingProperties: c.Bool("usingProperties"),
+
+            PullrequestKey:     c.String("pullrequestKey"),
+            PullrequestBranch:          c.String("pullrequestBranch"),
+            PullrequestBase:  c.String("pullrequestBase"),
 
 		},
 	}

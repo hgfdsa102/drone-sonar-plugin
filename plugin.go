@@ -25,6 +25,10 @@ type (
 		ShowProfiling  string
 		BranchAnalysis bool
 		UsingProperties bool
+
+        PullrequestKey string
+        PullrequestBranch string
+        PullrequestBase string
 	}
 	Plugin struct {
 		Config Config
@@ -67,6 +71,11 @@ func (p Plugin) Exec() error {
 			"-Dsonar.log.level=" + p.Config.Level,
 			"-Dsonar.showProfiling=" + p.Config.ShowProfiling,
 			"-Dsonar.scm.provider=git",
+            // sonar pr
+            "-Dsonar.pullrequest.key=" + p.Config.ShowProfiling,
+            "-Dsonar.pullrequest.branch=" + p.Config.ShowProfiling,
+            "-sonar.pullrequest.base=" + p.Config.ShowProfiling,
+
 		}
 		args = append(args, argsParameter...)
 	}
