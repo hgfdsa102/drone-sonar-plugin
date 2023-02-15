@@ -142,7 +142,7 @@ func run(c *cli.Context) {
 
 
     log.Println("=== plugin struct ===")
-    log.Printf("%v\n", plugin)
+    log.Printf("%+v\n", plugin)
     log.Println("=== ENV ===")
     for _, e := range os.Environ() {
         pair := strings.SplitN(e, "=", 2)

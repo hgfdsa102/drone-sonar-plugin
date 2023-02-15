@@ -70,18 +70,21 @@ func (p Plugin) Exec() error {
 			"-Dsonar.exclusions=" + p.Config.Exclusions,
 			"-Dsonar.log.level=" + p.Config.Level,
 			"-Dsonar.showProfiling=" + p.Config.ShowProfiling,
-			"-Dsonar.scm.provider=git",
+            "-Dsonar.scm.provider=git",
 		}
 		args = append(args, argsParameter...)
 	}
 
 
     // sonar pr
+    // https://sonarqube.inria.fr/sonarqube/documentation/analysis/github-integration/
     if len(p.Config.PullrequestKey) > 0 {
         argsParameter := []string{
             "-Dsonar.pullrequest.key=" + p.Config.PullrequestKey,
             "-Dsonar.pullrequest.branch=" + p.Config.PullrequestBranch,
             "-Dsonar.pullrequest.base=" + p.Config.PullrequestBase,
+            "-Dsonar.qualitygate.wait=True",
+            "-Dsonar.qualitygate.timeout=300",
             }
             args = append(args, argsParameter...)
     }
@@ -98,7 +101,7 @@ func (p Plugin) Exec() error {
     log.Println("===========")
 
 	cmd := exec.Command("sonar-scanner", args...)
-	// fmt.Printf("==> Executing: %s\n", strings.Join(cmd.Args, " "))
+    fmt.Printf("==> Executing: %s\n", strings.Join(cmd.Args, " "))
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	fmt.Printf("==> Code Analysis Result:\n")
