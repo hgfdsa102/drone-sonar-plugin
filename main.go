@@ -108,7 +108,7 @@ func main() {
         cli.StringFlag{
             Name: "pullrequestBase",
             Usage: "sonar.pullrequest.base",
-            EnvVar: "DRONE_REPO_BRANCH",
+            EnvVar: "DRONE_TARGET_BRANCH",
         },
 	}
 
