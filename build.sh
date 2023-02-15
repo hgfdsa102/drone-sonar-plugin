@@ -1,1 +1,1 @@
-docker build . -t 
+docker build . -t drone-sonar-plugin:1
