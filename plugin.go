@@ -74,7 +74,7 @@ func (p Plugin) Exec() error {
             // sonar pr
             "-Dsonar.pullrequest.key=" + p.Config.PullrequestKey,
             "-Dsonar.pullrequest.branch=" + p.Config.PullrequestBranch,
-            "-sonar.pullrequest.base=" + p.Config.PullrequestBase,
+            "-Dsonar.pullrequest.base=" + p.Config.PullrequestBase,
 
 		}
 		args = append(args, argsParameter...)
