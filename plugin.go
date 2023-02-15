@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+    "log"
 )
 
 type (
@@ -36,7 +37,7 @@ func (p Plugin) Exec() error {
     sonar.projectKey=myproject
 
     sonar.sources=src/main => .
-    sonar.issuesReport.console.enable=true 
+    sonar.issuesReport.console.enable=true
     // sonar.tests=src/test
     // sonar.language=java
     sonar.java.source=1.8
@@ -74,6 +75,12 @@ func (p Plugin) Exec() error {
 	if p.Config.BranchAnalysis {
 		args = append(args, "-Dsonar.branch.name=" + p.Config.Branch)
 	}
+
+    log.Println("=== ARGS ===")
+    for _, e := range args {
+        log.Printf("\t - %v \n", e)
+    }
+    log.Println("===========")
 
 	cmd := exec.Command("sonar-scanner", args...)
 	// fmt.Printf("==> Executing: %s\n", strings.Join(cmd.Args, " "))

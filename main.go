@@ -125,7 +125,7 @@ func run(c *cli.Context) {
     log.Println("=== ENV ===")
     for _, e := range os.Environ() {
         pair := strings.SplitN(e, "=", 2)
-        log.Println(pair[0])
+        log.Printf("\t * %v \n", pair)
     }
     log.Println("===========")
 
