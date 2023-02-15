@@ -31,6 +31,24 @@ type (
 )
 
 func (p Plugin) Exec() error {
+    /*
+    sonar.projectName=myproject
+    sonar.projectKey=myproject
+
+    sonar.sources=src/main => .
+    sonar.issuesReport.console.enable=true 
+    // sonar.tests=src/test
+    // sonar.language=java
+    sonar.java.source=1.8
+    sonar.java.binaries=target/classes
+    sonar.junit.reportPaths=target/surefire-reports
+    sonar.sourceEncoding=UTF-8
+
+    sonar.pullrequest.key=${ghprbPullId}
+    sonar.pullrequest.base=${ghprbTargetBranch}
+    sonar.pullrequest.branch=${ghprbSourceBranch}
+    */
+
 	args := []string{
 		"-Dsonar.host.url=" + p.Config.Host,
 		"-Dsonar.login=" + p.Config.Token,

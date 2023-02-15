@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/codegangsta/cli"
-	"os"
+    "log"
+    "os"
+    "strings"
 )
 
 var build = "1" // build number set at compile time
@@ -118,6 +120,14 @@ func run(c *cli.Context) {
 
 		},
 	}
+
+
+    log.Println("=== ENV ===")
+    for _, e := range os.Environ() {
+        pair := strings.SplitN(e, "=", 2)
+        log.Println(pair[0])
+    }
+    log.Println("===========")
 
 	if err := plugin.Exec(); err != nil {
 		fmt.Println(err)
